@@ -87,7 +87,7 @@ const LandingPage = () => {
              <p className='addfont'>
               <button className='btn btn- d-flex'>
                 <button className='btn text-danger fs-2' onClick={()=>{handleDecrease(datum)}}>-</button>
-              <h1>{qty} </h1>
+                
               <button className='btn text-danger fs-4'  onClick={()=>{handleIncrease(datum)}}>+</button>
               </button>
               </p>
