@@ -9,7 +9,7 @@ const Bag = () => {
     <>
      <main className="container p-2 shadow-lg bg-light">
         <div>
-          <div className="container">
+          <div className="container w-100">
             {/* <p className="fw-bold fs-4">Your Order</p> */}
 
             {cart.map((cartItem) => {
@@ -33,8 +33,6 @@ const Bag = () => {
                     {price}
                    </div>
                   </p>
-                  {/* <div className=''>
-                        </div> */}
                 </div>
               );
             })}

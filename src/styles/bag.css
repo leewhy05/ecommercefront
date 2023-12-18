@@ -7,8 +7,8 @@ body{
 }
 .possi{
     position: absolute;
-    width: 20vw;
-    right: 0;
+    width: 40vw;
+    right: 5px;
     top: 10vh;
     height: 30px;
     background: #f5f5f5;
@@ -31,7 +31,7 @@ body{
 @media (max-width: 370px) {
 
     .possi {
-      width: 30vw;
+      width: 250vw;
       padding: 7%;
     }
   }

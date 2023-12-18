@@ -4,7 +4,7 @@
 
 @media (max-width:500px) {
     .card{
-        /* margin-left: 1.5rem; */
+        margin-left: 1.5rem;
         width: 20rem;
     }
 }
