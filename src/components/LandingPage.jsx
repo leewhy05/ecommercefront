@@ -20,16 +20,7 @@ import Love from './Love';
 const LandingPage = () => {
   const [ data, setData] = useState ([])
   const [load, setLoad] = useState(false)
-  const [minu, setMinu] = useState(0)
-
-  const minus = ()=>{
-    setMinu(minu-1)
-  }
-
-     const add = ()=>{
-     setMinu(minu+1)
-   }
-
+  
 
   const getDate = async ()=>{
     try {
@@ -58,9 +49,9 @@ const LandingPage = () => {
     },[])
   return (
     <div >
-      <div className='d-flex justify-content-between w-100'>
+      <div className='d-flex justify-content-between '>
         <div className='d-none d-lg-block'>
-        <img src={jazzy} alt="" className='me-5 me-md-3 lag'/>
+        <img src={jazzy} alt="" className=' me-3 lag'/>
        </div>
         <div>
         {load && <Spinner animation="border" className='position-absolute top-50 start-50 text-danger'/>}
@@ -68,10 +59,10 @@ const LandingPage = () => {
           {data.map((datum)=>{
             const {title, price, _id, image, quantity}= datum
             return(
-              <div key={_id} className='col-9 col-md-6 justify-content-between col-lg-4 my-3 car'>
+              <div key={_id} className='col-10 col-md-6 justify-content-between col-lg-4 my-3  car'>
               <Card className='card' >
                 <Love/>
-            <Link to="/SinglePage"><Card.Img variant="top" src={image} className='w'/></Link>
+            <Link to=""><Card.Img variant="top" src={image} className='w'/></Link>
             
             <Card.Body>
              <p>{title}</p>
