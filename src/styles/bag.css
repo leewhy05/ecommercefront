@@ -1,0 +1,25 @@
+.poss{
+    position: relative;
+    cursor: pointer;
+}
+.possi{
+    position: absolute;
+    width: 20vw;
+    right: 0;
+    top: 10vh;
+    height: 30px;
+    background: #f5f5f5;
+    z-index: 3;
+    border-radius: 10px;
+    padding: 10%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%);
+    transition: opacity 2s, visibility 0.7s, transform 0.4s;
+}
+
+.poss:hover .possi{
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}

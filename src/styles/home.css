@@ -1,0 +1,10 @@
+.lag{
+    height: 67rem;
+}
+
+@media (max-width:500px) {
+    .card{
+        margin-left: 1.5rem;
+        width: 20rem;
+    }
+}

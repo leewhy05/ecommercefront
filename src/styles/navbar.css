@@ -1,0 +1,101 @@
+
+body{
+  overflow-x:hidden;
+}
+.guest-con {
+    position: relative;
+    cursor: pointer;
+  }
+  .guest-con p {
+    font-size: 13px;
+    font-weight: 400;
+  }
+  
+  .login-hover-con {
+    position: absolute;
+    width: 20vw;
+    left: 0;
+    top: 5vh;
+    background: #f5f5f5;
+    z-index: 1;
+    border-radius: 10px;
+    padding: 10%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%);
+    transition: opacity 1s, visibility 0.5s, transform 0.4s;
+  }
+  
+  .guest-con:hover .login-hover-con {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
+  
+.login-con {
+    display: flex;
+    align-items: center;
+    background: #294bfa;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    padding: 2% 5%;
+  }
+  
+  .login-text {
+    font-family: "poppins";
+    /* font-weight: 600; */
+    font-size: 25px;
+    line-height: 34px;
+    text-align: center;
+    color: #ffffff;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .signup-con {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: #f5f5f5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    padding: 2% 5%;
+    margin-top: 5%;
+    border: #f31d1d 1px solid;
+  }
+  
+  .signup-text {
+    font-family: "poppins";
+    font-size: 25px;
+    line-height: 34px;
+    color: #f31d1d;
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* -------------Media Query----------------------- */
+  @media (max-width: 1200px) {
+    .login-hover-con {
+      width: 30vw;
+      padding: 7%;
+    }
+    .header-2 input[type="checkbox"]:checked + .login-hover-con {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+    }
+  }
+  
+  @media (max-width: 950px) {
+
+    .hero-banner {
+      height: 50vh;
+      margin: 1.8rem 0;
+    }
+  
+    .login-hover-con {
+      width: 30vw;
+      padding: 7%;
+    }
+  }
+  
