@@ -29,7 +29,7 @@ const Bag = () => {
                    <div className="d-flex gap-3">
                    <span role="button" onClick={() => removeItem(_id)}>
                      <img src={BinPic} alt="" />
-                    </span>
+                    </span>&#8358;
                     {price}
                    </div>
                   </p>
@@ -44,7 +44,7 @@ const Bag = () => {
             ) : (
               <div className="d-flex justify-content-between">
                 <p> Items Subtotal </p>
-                  <p># {totalPrice} </p>
+                  <p>&#8358;{totalPrice} </p>
                 {/* <div>
                 </div> */}
               </div>

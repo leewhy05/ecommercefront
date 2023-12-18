@@ -89,7 +89,7 @@ const SignIn = () => {
             <input type="checkbox" id="sign"/>
             <label htmlFor="sign" className="sign">Keep me signed in</label>
             </div>
-            <label><a href="/Forgetpass" className="reset-password">Reset Password</a></label>
+            <label><a href="/ResetPass" className="reset-password">Reset Password</a></label>
           </div>
 
           <div className="btn1 text-center  mt-4">

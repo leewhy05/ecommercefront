@@ -84,7 +84,7 @@ const LandingPage = () => {
              <p className='addfont'>
               <button className='btn btn- d-flex align-items-center'>
                 <button className='btn text-danger fs-2' onClick={()=>{handleDecrease(datum)}}><LuMinus /></button>
-                
+                {quantity}
               <button className='btn text-danger fs-4'  onClick={()=>{handleIncrease(datum)}}><GoPlus /></button>
               </button>
               </p>
