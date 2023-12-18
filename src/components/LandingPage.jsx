@@ -43,12 +43,7 @@ const LandingPage = () => {
     }
 
   }
-    const {handleAddToCart,handleDecrease,handleIncrease,cart} = useContext(CartContext)
-    const [quantity] = [...cart]
-    console.log(...cart);
-    console.log(quantity.quantity);
-    const qty = quantity.quantity
-    console.log(qty);
+    const {handleAddToCart,handleDecrease,handleIncrease} = useContext(CartContext)
     const notify = () => {
       toast("An item has been added",{
         position:toast.POSITION.TOP_CENTER
