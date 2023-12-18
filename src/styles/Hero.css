@@ -1,6 +1,6 @@
 body{
-    overflow-x:hidden;
-  }
+  overflow-y:scroll;
+}
 .hero-img{
     max-height: 30rem;
 }

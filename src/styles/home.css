@@ -1,8 +1,16 @@
+
+body{
+    overflow-y:scroll;
+  }
 .lag{
     height: 67rem;
 }
 
 @media (max-width:500px) {
+    
+body{
+    overflow-y:scroll;
+  }
     .card{
         margin-left: 1.5rem;
         width: 20rem;
