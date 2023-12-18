@@ -1,3 +1,6 @@
+body{
+    overflow-x:hidden;
+  }
 .lag{
     height: 67rem;
 }

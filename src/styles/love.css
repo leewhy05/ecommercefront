@@ -1,3 +1,6 @@
+body{
+  overflow-x:hidden;
+}
 .heart-bck {
     top: 2px;
     right: 2px;

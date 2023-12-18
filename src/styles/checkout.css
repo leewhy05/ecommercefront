@@ -1,3 +1,6 @@
+body{
+  overflow-x:hidden;
+}
 .checkout-con {
   gap: 30px;
   height: 90vh;
