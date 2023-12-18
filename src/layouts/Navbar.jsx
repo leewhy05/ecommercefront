@@ -55,7 +55,7 @@ const Navbar = () => {
             <div className='pic position-relative'>
            <img src={lock}alt="" role='button' className='' />
             </div>
-            <div className='position-absolute top-0 start-100'>
+            <div className='position-absolute bottom-0 start-50 rounded-pill'>
             <p>{cart.length}</p>
             </div>
             <Cart/>
@@ -63,7 +63,7 @@ const Navbar = () => {
           </div>
      </section>
         </nav>
-        {/* <div className='position-absolute end-0'>{show && <Cart/>}</div> */}
+        
         <Outlet/>
     </main>
   )

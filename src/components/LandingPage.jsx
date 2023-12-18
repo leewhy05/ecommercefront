@@ -3,6 +3,8 @@ import jazzy from '../assets/image 4.png'
 import Spinner from 'react-bootstrap/Spinner'
 import Button from 'react-bootstrap/Button';
 import '../styles/home.css'
+import { GoPlus } from "react-icons/go";
+import { LuMinus } from "react-icons/lu";
 import { ToastContainer, toast } from 'react-toastify'
 import Card from 'react-bootstrap/Card';
 import image5 from '../assets/image 5.jpg'
@@ -80,10 +82,10 @@ const LandingPage = () => {
               </div>
 
              <p className='addfont'>
-              <button className='btn btn- d-flex'>
-                <button className='btn text-danger fs-2' onClick={()=>{handleDecrease(datum)}}>-</button>
+              <button className='btn btn- d-flex align-items-center'>
+                <button className='btn text-danger fs-2' onClick={()=>{handleDecrease(datum)}}><LuMinus /></button>
                 
-              <button className='btn text-danger fs-4'  onClick={()=>{handleIncrease(datum)}}>+</button>
+              <button className='btn text-danger fs-4'  onClick={()=>{handleIncrease(datum)}}><GoPlus /></button>
               </button>
               </p>
              </div>

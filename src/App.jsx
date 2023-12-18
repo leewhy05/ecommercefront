@@ -10,6 +10,7 @@ import Update from './pages/Update'
 import Delivery from './pages/Delivery'
 import SinglePage from './pages/SinglePage'
 import { Toaster } from 'react-hot-toast';
+import Forgetpass from './pages/forgetpass'
 
 function App() {
   
@@ -27,6 +28,7 @@ function App() {
         </Route>
         <Route path='/SignIn' element={<SignIn/>}/>
         <Route path='/SignUp' element={<SignUp/>}/>
+        <Route path='/Forgetpass' element={<Forgetpass/>}/>
       </Routes>
       <Toaster/>
       

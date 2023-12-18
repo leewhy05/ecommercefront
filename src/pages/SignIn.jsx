@@ -1,14 +1,15 @@
-import React, { useContext, useState } from 'react'
-import '../styles/sign.css'
-import mobileImg from '../assets/jazzy.png'
-import { Link, useNavigate } from 'react-router-dom'
-import PostContext from '../contexts/logContext'
+import React, { useContext, useState } from 'react';
+import '../styles/sign.css';
+import mobileImg from '../assets/jazzy.png';
+import { Link, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import PostContext from '../contexts/postContext';
 
-const SignUp = () => {
+const SignIn = () => {
   const { setLoggedIn } = useContext(PostContext);
-  const [email, setEmail] = useState("");
-  const [password, setpassword] = useState("");
-  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const history = useNavigate();
 
   async function Signin(e) {
     e.preventDefault();
@@ -18,39 +19,30 @@ const SignUp = () => {
     };
 
     try {
-      const res = await fetch("https://ecommerce-3r9v.onrender.com/api/user/login", {
+      const data = await fetch("https://ecommerce-3r9v.onrender.com/api/user/login", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
         },
         body: JSON.stringify(loginDetails),
       });
-      const data = await res.json();
-      console.log(data);
-      if (data.token) {
-        localStorage.setItem("token", data.token);
-        toast.success(data.msg);
-        navigate("/");
+      const res = await data.json();
+      console.log(res);
+      if (res.success === false) {
+        toast.error(res.message);
+      }
+      if (res.token === true) {
+        toast.success(res.message);
+        localStorage.setItem("token", res.token);
+        console.log(res);
+        history('/');
         setLoggedIn(true);
       }
-      if (
-        data.msg === "all fields are required to login" ||
-        data.errors.password === "Email or password is incorrect" ||
-        data.errors.email === "Not a regitered email"
-      ) {
-        toast.error(data.msg || data.errors.password || data.errors.email);
-      }
     } catch (error) {
-      console.log(error.message);
-      
+      toast.error(error.message);
     }
   }
-
-    const [passwordVisible, setPasswordVisible] = useState(false);
-    
-  const handleTogglePassword = () => {
-    setPasswordVisible(!passwordVisible);
-  };
+  
   return (
     <div>
           <div className="form-con col-12  col-md-8 offset-md-2 col-lg-4 offset-lg-4">
@@ -82,32 +74,22 @@ const SignUp = () => {
             </label>
             <input
             className='border border rounded lar  w-100'
-              type={passwordVisible ? "text" : "password"}
+            type='password'
               id="password"
               name="password"
               placeholder="Password"
               value={password}
-                onChange={(e)=>setpassword(e.target.value)}
+                onChange={(e)=>setPassword(e.target.value)}
             />
 
-            <button
-              className="btn-password"
-              onClick={handleTogglePassword}
-              aria-label={passwordVisible ? "Hide password" : "Show password"}
-            >
-              <i
-                className={`fa fa-sharp fa-light ${
-                  passwordVisible ? "fa-eye" : "fa-eye-slash"
-                }`}
-              ></i>
-            </button>
+            
           </div>
           <div className="mb-3 d-flex justify-content-between">
             <div>
             <input type="checkbox" id="sign"/>
             <label htmlFor="sign" className="sign">Keep me signed in</label>
             </div>
-            <label><a href="#" className="reset-password">Reset Password</a></label>
+            <label><a href="/Forgetpass" className="reset-password">Reset Password</a></label>
           </div>
 
           <div className="btn1 text-center  mt-4">
@@ -126,4 +108,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default SignIn
