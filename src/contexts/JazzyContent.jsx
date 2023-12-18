@@ -4,74 +4,89 @@ const CartContext = createContext()
 
 const cartItemsFromLocalStorage = JSON.parse(localStorage.getItem('cart')) || []
 
+export const CartProvider =({children})=>{
+  const [cart, setCart] = useState(cartItemsFromLocalStorage);
 
-export const JazzyProvider =({children})=>{
-    const [cart, setCart] = useState(cartItemsFromLocalStorage);
-
-} 
-const [products, setProducts] = useState(data);
-const [cart, setCart] = useState([]);
-const [isLoading, setIsLoading] = useState(true);
-
-
-const handleIncrease = (id) => {
-  const newProducts = products.map((product) => {
-    if (product.id === id) {
-      product.count++;
+  let handleAddToCart = (product) => {
+    const productSelected = cart.find(
+      (singleCart) => singleCart.id === product.id
+    );
+    if (productSelected) {
+      setCart(
+        cart.map((oneItem) =>
+          oneItem.id === product.id
+            ? {
+                ...productSelected,
+                quantity: productSelected.quantity + 1,
+              }
+            : oneItem
+        )
+      );
+    } else {
+      setCart([...cart, { ...product, quantity: 1 }]);
     }
-    return product;
-  });
-  setProducts(newProducts);
-};
-
-const handleReduce = (id) => {
-  const newProducts = products.map((product) => {
-    if (product.id === id && product.count > 1) {
-      product.count--;
-    }
-    return product;
-  });
-  setProducts(newProducts);
-};
-
-const toCartButton = (id) => {
-  const newProducts = products.map((product) => {
-    if (product.id === id) {
-      product.cart = !product.cart;
-    }
-    return product;
-  });
-  setProducts(newProducts);
-};
-
-useEffect(() => {
-  const toCart = () => {
-    setCart(products.filter((product) => product.cart && product));
   };
-  toCart();
-}, [products]);
 
-useEffect(() => {
-  const timer = setTimeout(() => {
-    setIsLoading(false);
-  }, 3000);
+  useEffect(()=>{
+    localStorage.setItem("cart",JSON.stringify(cart))
+  },[cart])
 
-  return () => {
-    clearTimeout(timer);
-  };
-}, []);
-
-
-return (
+   // function below is for handleIncrease for d cart section
+  function handleIncrease(product) {
+    const productSelected = cart.find(
+      (singleCartItem) => singleCartItem.id === product.id
+    )
+    if (productSelected) {
+      setCart(
+        cart.map((oneItem) =>
+          oneItem.id === product.id
+            ? { ...productSelected, quantity: productSelected.quantity + 1 }
+            : oneItem
+        )
+      )
+    }
+  }
+  
+  // function below is for handleDecrease for d cart section
+  function handleDecrease(product) {
+    const productSelected = cart.find(
+      (singleCartItem) => singleCartItem.id === product.id
+    )
+    if (productSelected.quantity === 1) {
+      setCart(cart.filter((oneItem) => oneItem.id !== product.id))
+    } else {
+      setCart(
+        cart.map((dd) =>
+          dd.id === product.id
+            ? { ...productSelected, quantity: productSelected.quantity - 1 }
+            : dd
+        )
+      )
+    }
+  }
+  // reduce ftn for d cart section
+  const totalPrice = cart.reduce(
+    (price, item) => price + item.quantity * item.price,
+    0
+  )
+  return (
 
     <CartContext.Provider value={{
-        handleIncrease,
-        handleReduce,
-        toCartButton
-     
+      handleAddToCart,
+      cart,
+      setCart,
+      handleIncrease,
+      handleDecrease,
+      totalPrice  
     }}>
       {children}
 
     
     </CartContext.Provider>
-    )
+  )
+
+}
+  
+
+
+export default CartContext;

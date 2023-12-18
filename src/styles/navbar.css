@@ -23,7 +23,7 @@ body{
     opacity: 0;
     visibility: hidden;
     transform: translateX(100%);
-    transition: opacity 1s, visibility 0.5s, transform 0.4s;
+    transition: opacity 0.4s, visibility 0.5s, transform 0.4s;
   }
   
   .guest-con:hover .login-hover-con {

@@ -30,7 +30,7 @@ const LandingPage = () => {
   const getDate = async ()=>{
     try {
       setLoad(true)
-      let data = await fetch('http://localhost:9000/api/products');
+      let data = await fetch('https://ecommerce-3r9v.onrender.com/api/products');
       let response = await data.json();
       setData(response.products)
       console.log(response.products);
