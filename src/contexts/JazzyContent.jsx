@@ -1,20 +1,20 @@
-import React, {createContext,useState,useEffect} from 'react';
+import React, { createContext, useState, useEffect } from "react";
 
-const CartContext = createContext()
+const CartContext = createContext();
 
-const cartItemsFromLocalStorage = JSON.parse(localStorage.getItem('cart')) || []
+const cartItemsFromLocalStorage =
+  JSON.parse(localStorage.getItem("cart")) || [];
 
-export const CartProvider =({children})=>{
+export const CartProvider = ({children}) => {
   const [cart, setCart] = useState(cartItemsFromLocalStorage);
-
   let handleAddToCart = (product) => {
     const productSelected = cart.find(
-      (singleCart) => singleCart.id === product.id
+      (singleCart) => singleCart._id === product._id
     );
     if (productSelected) {
       setCart(
         cart.map((oneItem) =>
-          oneItem.id === product.id
+          oneItem._id === product._id
             ? {
                 ...productSelected,
                 quantity: productSelected.quantity + 1,
@@ -27,33 +27,34 @@ export const CartProvider =({children})=>{
     }
   };
 
-  useEffect(()=>{
-    localStorage.setItem("cart",JSON.stringify(cart))
-  },[cart])
-
-   // function below is for handleIncrease for d cart section
+  // function below is for handleIncrease for d cart section
   function handleIncrease(product) {
     const productSelected = cart.find(
-      (singleCartItem) => singleCartItem.id === product.id
+      (singleCartItem) => singleCartItem._id === product._id
     )
     if (productSelected) {
       setCart(
         cart.map((oneItem) =>
-          oneItem.id === product.id
+          oneItem._id === product._id
             ? { ...productSelected, quantity: productSelected.quantity + 1 }
             : oneItem
         )
       )
     }
   }
-  
-  // function below is for handleDecrease for d cart section
-  function handleDecrease(product) {
+// function below is for handleDecrease for d cart section
+function handleDecrease(product) {
     const productSelected = cart.find(
       (singleCartItem) => singleCartItem.id === product.id
     )
     if (productSelected.quantity === 1) {
-      setCart(cart.filter((oneItem) => oneItem.id !== product.id))
+      setCart(
+        cart.map((dd) =>
+          dd.id === product.id
+            ? { ...productSelected, quantity: productSelected.quantity = 1}
+            : dd
+        )
+      )
     } else {
       setCart(
         cart.map((dd) =>
@@ -64,29 +65,33 @@ export const CartProvider =({children})=>{
       )
     }
   }
-  // reduce ftn for d cart section
-  const totalPrice = cart.reduce(
+  // funtion to delete item
+  function removeItem (id){
+    let remove = cart.filter((cartItx)=> cartItx._id !== id );
+    setCart(remove)
+  }
+   // reduce ftn for d cart section
+   const totalPrice = cart.reduce(
     (price, item) => price + item.quantity * item.price,
     0
   )
-  return (
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem('totalPrice',JSON.stringify(totalPrice))
+  }, [cart]);
 
-    <CartContext.Provider value={{
-      handleAddToCart,
-      cart,
-      setCart,
-      handleIncrease,
-      handleDecrease,
-      totalPrice  
+  return <CartContext.Provider value={{
+    handleAddToCart,
+    cart,
+    setCart,
+    handleIncrease,
+    handleDecrease,
+    totalPrice,
+    removeItem
     }}>
-      {children}
+        {children}
 
-    
-    </CartContext.Provider>
-  )
-
-}
-  
-
+  </CartContext.Provider>;
+};
 
 export default CartContext;

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import jazzy from '../assets/image 4.png'
 import Spinner from 'react-bootstrap/Spinner'
 import Button from 'react-bootstrap/Button';
 import '../styles/home.css'
+import { ToastContainer, toast } from 'react-toastify'
 import Card from 'react-bootstrap/Card';
 import image5 from '../assets/image 5.jpg'
 import image6 from '../assets/image 6.jpg'
@@ -10,6 +11,7 @@ import image7 from '../assets/image 7.jpg'
 import image8 from '../assets/image 8.jpg'
 import image9 from '../assets/image 9.jpg'
 import { Link } from 'react-router-dom';
+import CartContext from '../contexts/JazzyContent';
 import Love from './Love';
 
 
@@ -33,7 +35,7 @@ const LandingPage = () => {
       let data = await fetch('https://ecommerce-3r9v.onrender.com/api/products');
       let response = await data.json();
       setData(response.products)
-      console.log(response.products);
+      console.log(response);
     } catch (error) {
       console.log(error)
     }finally{
@@ -41,7 +43,17 @@ const LandingPage = () => {
     }
 
   }
-
+    const {handleAddToCart,handleDecrease,handleIncrease,cart} = useContext(CartContext)
+    const [quantity] = [...cart]
+    console.log(...cart);
+    console.log(quantity.quantity);
+    const qty = quantity.quantity
+    console.log(qty);
+    const notify = () => {
+      toast("An item has been added",{
+        position:toast.POSITION.TOP_CENTER
+      });
+    };
 
     useEffect (()=>{
         document.title= 'Home || Page'
@@ -57,7 +69,7 @@ const LandingPage = () => {
         {load && <Spinner animation="border" className='position-absolute top-50 start-50 text-danger'/>}
         <div className='row'>
           {data.map((datum)=>{
-            const {title, price, _id, image}= datum
+            const {title, price, _id, image, quantity}= datum
             return(
               <div key={_id} className='col-9 col-md-6 justify-content-between col-lg-4 my-3'>
               <Card className='card' >
@@ -73,10 +85,10 @@ const LandingPage = () => {
               </div>
 
              <p className='addfont'>
-              <button className='btn btn-'>
-                <button className='btn text-danger fs-2' onClick={minus}>-</button>
-              {minu}
-              <button className='btn text-danger fs-4' onClick={add}>+</button>
+              <button className='btn btn- d-flex'>
+                <button className='btn text-danger fs-2' onClick={()=>{handleDecrease(datum)}}>-</button>
+              <h1>{qty} </h1>
+              <button className='btn text-danger fs-4'  onClick={()=>{handleIncrease(datum)}}>+</button>
               </button>
               </p>
              </div>
@@ -88,7 +100,8 @@ const LandingPage = () => {
               <img src={image8} alt="" />
               <img src={image9} alt="" />
              </div>
-             <Link to=''> <Button variant="danger" className='w-100'> <span>+</span> Add to cart</Button></Link>
+             <Link to=''> <Button onClick= {()=>{handleAddToCart(datum);notify()}}  variant="danger" className='w-100'> <span>+</span> Add to cart</Button></Link>
+             <ToastContainer/>
             </Card.Body>
             </Card>
             </div>

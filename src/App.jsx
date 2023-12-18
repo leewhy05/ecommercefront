@@ -9,6 +9,7 @@ import CheckOutPage from './pages/CheckOutPage'
 import Update from './pages/Update'
 import Delivery from './pages/Delivery'
 import SinglePage from './pages/SinglePage'
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   
@@ -23,11 +24,11 @@ function App() {
           <Route path='/Update' element={<Update/>}/>
           <Route path='/Delivery' element={<Delivery/>}/>
           <Route path='/SinglePage' element={<SinglePage/>}/>
-
         </Route>
         <Route path='/SignIn' element={<SignIn/>}/>
         <Route path='/SignUp' element={<SignUp/>}/>
       </Routes>
+      <Toaster/>
       
       
       

@@ -23,3 +23,12 @@
     visibility: visible;
     transform: translateX(0);
 }
+
+
+@media (max-width: 370px) {
+
+    .possi {
+      width: 30vw;
+      padding: 7%;
+    }
+  }

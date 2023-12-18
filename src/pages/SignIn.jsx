@@ -1,9 +1,50 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import '../styles/sign.css'
 import mobileImg from '../assets/jazzy.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import PostContext from '../contexts/logContext'
 
 const SignUp = () => {
+  const { setLoggedIn } = useContext(PostContext);
+  const [email, setEmail] = useState("");
+  const [password, setpassword] = useState("");
+  const navigate = useNavigate();
+
+  async function Signin(e) {
+    e.preventDefault();
+    const loginDetails = {
+      email,
+      password,
+    };
+
+    try {
+      const res = await fetch("https://ecommerce-3r9v.onrender.com/api/user/login", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(loginDetails),
+      });
+      const data = await res.json();
+      console.log(data);
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+        toast.success(data.msg);
+        navigate("/");
+        setLoggedIn(true);
+      }
+      if (
+        data.msg === "all fields are required to login" ||
+        data.errors.password === "Email or password is incorrect" ||
+        data.errors.email === "Not a regitered email"
+      ) {
+        toast.error(data.msg || data.errors.password || data.errors.email);
+      }
+    } catch (error) {
+      console.log(error.message);
+      
+    }
+  }
 
     const [passwordVisible, setPasswordVisible] = useState(false);
     
@@ -31,6 +72,8 @@ const SignUp = () => {
               id="email"
               name="email"
               placeholder="example@mail.com"
+              value={email}
+              onChange={(e)=>setEmail(e.target.value)}
             />
           </div>
           <div className="mb-3 login">
@@ -43,6 +86,8 @@ const SignUp = () => {
               id="password"
               name="password"
               placeholder="Password"
+              value={password}
+                onChange={(e)=>setpassword(e.target.value)}
             />
 
             <button
@@ -66,7 +111,7 @@ const SignUp = () => {
           </div>
 
           <div className="btn1 text-center  mt-4">
-            <button className="btn-create">Sign In</button>
+            <button className="btn-create" onClick={Signin}>Sign In</button>
           </div>
         </form>
       </div>

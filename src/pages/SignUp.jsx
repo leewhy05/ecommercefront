@@ -1,9 +1,55 @@
 import React, {useState} from 'react'
 import '../styles/sign.css'
 import mobileImg from '../assets/jazzy.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast';
 
 const SignUp = () => {
+const [firstname, setFirstName] = useState('')
+const [lastname, setLastName] = useState('')
+const [email, setEmail] = useState('')
+const [phonenumber, setphonenumber] = useState('')
+const [password, setPassword] = useState('')
+const [verifypassword, setverifyPassword] = useState('')
+const navigate = useNavigate()
+
+const handlSignUp = async(e)=>{
+  e.preventDefault()
+  const signUpData = {
+    firstname,
+    lastname,
+    email,
+    phonenumber,
+    password,
+    verifypassword
+  }
+  try {
+    const data = await fetch('https://ecommerce-3r9v.onrender.com/api/user/registration',{
+      method:"POST",
+      headers:{
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(signUpData),
+    });
+    const res = await data.json();
+    console.log(res);
+    if(res.success === false){
+      toast.error(res.message)
+    }
+    if(res.success === true){
+      toast.success(res.message)
+      navigate('/SignIn')
+    }
+    if(res.name === "ValidationError"){
+      toast.error(res.message)
+    }
+  } catch (error) {
+    toast.error
+  }
+
+}
+
+
     const [passwordVisible, setPasswordVisible] = useState(false);
 
     const handleTogglePassword = () => {
@@ -31,6 +77,8 @@ const SignUp = () => {
               id="firstName"
               name="firstName"
               placeholder="First Name"
+              value={firstname}
+              onChange={(e)=> setFirstName(e.target.value) }
             />
           </div>
           <div className="mb-3">
@@ -43,6 +91,8 @@ const SignUp = () => {
               id="lastName"
               name="lastName"
               placeholder="Last Name"
+              value={lastname}
+              onChange={(e)=> setLastName(e.target.value) }
             />
           </div>
           <div className="mb-3">
@@ -55,6 +105,8 @@ const SignUp = () => {
               id="email"
               name="email"
               placeholder="example@mail.com"
+              value={email}
+              onChange={(e)=> setEmail(e.target.value) }
             />
           </div>
           <div className="mb-3">
@@ -69,6 +121,8 @@ const SignUp = () => {
               id="phoneNumber"
               name="phoneNumber"
               placeholder="818 000 0000"
+              value={phonenumber}
+              onChange={(e)=> setphonenumber(e.target.value) }
             />
             </div>
           </div>
@@ -82,6 +136,8 @@ const SignUp = () => {
               id="password"
               name="password"
               placeholder="Password"
+              value={password}
+              onChange={(e)=> setPassword(e.target.value) }
             />
 
             <button
@@ -108,6 +164,8 @@ const SignUp = () => {
               id="confirmPassWord"
               name="confirmPassWord"
               placeholder="Confirm Password"
+              value={verifypassword}
+              onChange={(e)=> setverifyPassword(e.target.value) }
             />
 
             <button
@@ -129,7 +187,7 @@ const SignUp = () => {
           </div>
 
           <div className="btn1 text-center  mt-4">
-            <button className="btn-create">Create Your Account</button>
+            <button className="btn-create" onClick={handlSignUp}>Create Your Account</button>
           </div>
         </form>
       </div>
