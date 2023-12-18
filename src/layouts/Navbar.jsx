@@ -42,8 +42,8 @@ const Navbar = () => {
               <div className='d-flex pt-3 gap-2   '>
               <p className='guest-text d-none d-lg-block fs-5 text-secondary'>Hi,Guests</p>
               <div className='guest-image d-none d-lg-block'> <img src={guestVector} alt="guest-vector" className='img-fluid' style={{width:"20px"}}/>
-              <LoginHover/></div>
-             
+             </div>
+             <LoginHover/>
               </div>
            
         </div>
