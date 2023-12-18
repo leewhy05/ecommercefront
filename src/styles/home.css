@@ -6,8 +6,9 @@ body{
 }
 
 @media (max-width:500px) {
-    .card{
+    .card, .car{
         margin-left: 1.5rem;
-        width: 20rem;
+        width: 15rem;
+        align-items: center;
     }
 }

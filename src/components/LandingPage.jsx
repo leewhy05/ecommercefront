@@ -66,7 +66,7 @@ const LandingPage = () => {
           {data.map((datum)=>{
             const {title, price, _id, image, quantity}= datum
             return(
-              <div key={_id} className='col-9 col-md-6 justify-content-between col-lg-4 my-3'>
+              <div key={_id} className='col-9 col-md-6 justify-content-between col-lg-4 my-3 car'>
               <Card className='card' >
                 <Love/>
             <Link to="/SinglePage"><Card.Img variant="top" src={image} className='w'/></Link>
