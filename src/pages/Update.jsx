@@ -10,6 +10,12 @@ const Update = () => {
   
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [recipient, setRecipient] = useState({
+    lastname:"",
+    firstname:'',
+    email:"",
+    phonenumber:""
+  })
 
   return (
     <>

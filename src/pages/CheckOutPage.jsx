@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import '../styles/checkout.css'
 import { Link } from "react-router-dom";
 import Update from "./Update";
 import Delivery from "./Delivery";
-import Bag from "../components/Bag";
+import binPic from '../assets/bin.jpg'
+import CartContext from "../contexts/JazzyContent";
 
 
 const CheckOutPage = () => {
-  
+  const [show, setShow] = useState(false);
+  const {cart,removeItem, totalPrice,handleIncrease,handleDecrease } = useContext(CartContext)
+  console.log(cart);
   return (
     <div className="row align-items-center justify-content-between">
       <div className="checkout-con container-lg my-5 col-lg-6">
@@ -33,9 +36,61 @@ const CheckOutPage = () => {
           <button className="place">Place Your Order</button>
         </div>
       </div>
-      <div className="ally col-lg-6">
-      <Bag/>
-      </div>
+      <section className='col-lg-5 border border-3 rounded p-4'>
+            <h5>Your order from</h5>
+            {cart.length === 0 && <><h2>No items </h2> </>}
+            <hr />
+            {cart.map((cartItem) => {
+              const { quantity, title, price, _id } = cartItem;
+              return (
+                <div
+                  className="row justify-content-between align-items-center "
+                  key={_id}
+                >
+                  {/* <hr /> */}
+
+                  <div className='col-5 '>
+                  <h2 className="fs-6 text-danger"> {title}... </h2>
+                  <p className="">  </p>
+                  <div className='bg-secondary w-75 '>
+                    <button className="btn btn-lg" onClick={()=>handleIncrease(cartItem)}>
+                      +
+                    </button>
+                    {quantity}
+                    <button className="btn btn-lg" onClick={()=>handleDecrease(cartItem)}>
+                      -
+                    </button>
+                  </div>
+                  </div>
+                  <p className="col-4">
+                    
+                    
+                   <div className="d-flex gap-3">
+                   <span role="button" onClick={() => removeItem(_id)}>
+                     <img src={binPic} alt="" />
+                    </span>
+                    {price}
+                   </div>
+                  </p>
+                  {/* <div className=''>
+                        </div> */}
+                </div>
+              );
+            })}
+             <div>
+            {totalPrice === 0 ? (
+              ""
+            ) : (
+              <div className="d-flex justify-content-between">
+                <p> Items Subtotal </p>
+                  <p># {totalPrice} </p>
+                {/* <div>
+                </div> */}
+              </div>
+            )}
+            <hr />
+          </div>
+        </section>
     </div>
   );
 };

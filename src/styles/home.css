@@ -3,7 +3,7 @@ body{
     overflow-y:scroll;
   }
 .lag{
-    height: 67rem;
+    height: 64rem;
 }
 
 @media (max-width:500px) {

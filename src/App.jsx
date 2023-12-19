@@ -10,6 +10,7 @@ import Update from './pages/Update'
 import Delivery from './pages/Delivery'
 import SinglePage from './pages/SinglePage'
 import { Toaster } from 'react-hot-toast';
+import ForgotPassword from './pages/ForgotPassword'
 import ResetPass from './pages/ResetPass'
 
 
@@ -29,7 +30,8 @@ function App() {
         </Route>
         <Route path='/SignIn' element={<SignIn/>}/>
         <Route path='/SignUp' element={<SignUp/>}/>
-        <Route path='/ResetPass' element={<ResetPass/>}/>
+        <Route path='/ForgotPassword' element={<ForgotPassword/>}/>
+        <Route path='/password/:resetToken' element={<ResetPass/>}/>
       </Routes>
       <Toaster/>
       

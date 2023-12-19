@@ -31,9 +31,9 @@ const SignIn = () => {
       if (res.success === false) {
         toast.error(res.message);
       }
-      if (res.token === true) {
+      if (res.success === true) {
         toast.success(res.message);
-        localStorage.setItem("token", res.token);
+        localStorage.setItem("token", res.user.token);
         console.log(res);
         history('/');
         setLoggedIn(true);
@@ -89,7 +89,7 @@ const SignIn = () => {
             <input type="checkbox" id="sign"/>
             <label htmlFor="sign" className="sign">Keep me signed in</label>
             </div>
-            <label><a href="/ResetPass" className="reset-password">Reset Password</a></label>
+            <label><a href="/ForgotPassword" className="reset-password">Reset Password</a></label>
           </div>
 
           <div className="btn1 text-center  mt-4">

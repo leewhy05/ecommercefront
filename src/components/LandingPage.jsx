@@ -51,7 +51,7 @@ const LandingPage = () => {
     <div >
       <div className='d-flex justify-content-between '>
         <div className='d-none d-lg-block'>
-        <img src={jazzy} alt="" className=' me-3 lag'/>
+        <img src={jazzy} alt="" className=' my-2 me-3 lag'/>
        </div>
         <div>
         {load && <Spinner animation="border" className='position-absolute top-50 start-50 text-danger'/>}
@@ -59,10 +59,10 @@ const LandingPage = () => {
           {data.map((datum)=>{
             const {title, price, _id, image, quantity}= datum
             return(
-              <div key={_id} className='col-10 col-md-6 justify-content-between col-lg-4 my-3  car'>
+              <div key={_id} className='col-10 col-md-6 justify-content-between col-lg-4 my-3'>
               <Card className='card' >
                 <Love/>
-            <Link to=""><Card.Img variant="top" src={image} className='w'/></Link>
+            <Link to=""><Card.Img variant="top" src={image} className=''/></Link>
             
             <Card.Body>
              <p>{title}</p>
@@ -74,9 +74,9 @@ const LandingPage = () => {
 
              <p className='addfont'>
               <button className='btn btn- d-flex align-items-center'>
-                <button className='btn text-danger fs-2' onClick={()=>{handleDecrease(datum)}}><LuMinus /></button>
+                <button className='btn text-danger' onClick={()=>{handleDecrease(datum)}}><LuMinus /></button>
                 {quantity}
-              <button className='btn text-danger fs-4'  onClick={()=>{handleIncrease(datum)}}><GoPlus /></button>
+              <button className='btn text-danger'  onClick={()=>{handleIncrease(datum)}}><GoPlus /></button>
               </button>
               </p>
              </div>
