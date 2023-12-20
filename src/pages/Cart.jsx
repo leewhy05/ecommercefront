@@ -6,7 +6,7 @@ import '../styles/bag.css'
 const Cart = () => {
   return (
   <>
-  <main className='possi'>
+  <main className=''>
     <Bag/>
   </main>
   

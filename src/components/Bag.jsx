@@ -1,13 +1,14 @@
-import React,{useState, useContext} from 'react'
-import { Link } from 'react-router-dom'
-import CartContext from '../contexts/JazzyContent'
-import BinPic from '../assets/bin.jpg'
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import  trash from '../assets/bin.jpg'
+import CartContext from "../contexts/JazzyContent";
 
 const Bag = () => {
-    const { cart, removeItem, totalPrice} = useContext(CartContext)
+  const { cart, removeItem, totalPrice } = useContext(CartContext);
+  // const [wk,setWk] = useState(0)
   return (
     <>
-    <main className="container p-2 shadow-lg bg-light text-danger">
+      <main className="container p-2 shadow-lg bg-light">
         <div>
           <div className="container">
             {/* <p className="fw-bold fs-4">Your Order</p> */}
@@ -21,14 +22,14 @@ const Bag = () => {
                 >
                   <hr />
 
-                  <p className="col-1 text-secondary"> {quantity} </p>
+                  <p className="col-1"> {quantity} </p>
                   <h2 className="fs-6 col-5 text-danger"> {title}... </h2>
                   <p className="col-4">
                     
                     
-                   <div className="d-flex gap-3 text-dark">
+                   <div className="d-flex gap-3">
                    <span role="button" onClick={() => removeItem(_id)}>
-                     <img src={BinPic} alt="" />
+                   <img src={trash} alt="" />
                     </span>
                     {price}
                    </div>
@@ -44,7 +45,7 @@ const Bag = () => {
             {totalPrice === 0 ? (
               ""
             ) : (
-              <div className="d-flex justify-content-between text-dark">
+              <div className="d-flex justify-content-between">
                 <p> Items Subtotal </p>
                   <p># {totalPrice} </p>
                 {/* <div>
@@ -56,7 +57,7 @@ const Bag = () => {
           <div className="d-flex justify-content-center">
           <hr />
             {cart.length > 0 ? (
-              <Link className="btn btn-success w-100" to='/CheckOutPage'>
+              <Link className="btn btn-success w-100" to='/Order'>
                 proceed to Checkout
               </Link>
             ) : (
@@ -74,10 +75,8 @@ const Bag = () => {
           </div>
         </div>
       </main>
-    
-    
     </>
-  )
-}
+  );
+};
 
-export default Bag
+export default Bag;

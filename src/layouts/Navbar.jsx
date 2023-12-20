@@ -14,6 +14,7 @@ import LoginHover from '../pages/LoginHover'
 
 const Navbar = () => {
   const {cart} = useContext(CartContext)
+  const [see,setSee]= useState(false)
   const [show, setShow] = useState(false);
   const [authShow, setAuthShow] = useState(false);
   const [user,setUser] = useState(null)
@@ -37,62 +38,45 @@ const Navbar = () => {
 
   return (
     <main className='container position-relative'>
-        <nav className='d-flex justify-content-between align-items-center gap-3'>
-     <section className='d-flex justify-content-between align-items-center gap-3 my-3'>
+    <nav className='d-flex justify-content-between align-items-center gap-3'>
+ <section className='d-flex justify-content-between align-items-center gap-3 my-3'>
 
-               <div>
-                <Link to='/'>
-                    <img src={jazzy} alt="" />
-                </Link>
-               </div>
+           <div>
+            <Link to='/'>
+                <img src={jazzy} alt="" />
+            </Link>
+           </div>
 
-               <div>
-                <img src={location} alt="" className='d-none d-lg-block'/>
-               </div>
-               <h5 className='d-none d-lg-block text-danger'>Lagos, Nigeria</h5>
-     </section>
+           <div>
+            <img src={location} alt="" className='d-none d-lg-block'/>
+           </div>
+           <h5 className='d-none d-lg-block text-danger'>Lagos, Nigeria</h5>
+ </section>
 
-     <section className='d-flex align-items-center gap-2'>
-          <img src={foodpan} alt="" className='img-fluid'/>
-          <h5 className='d-none d-lg-block mt-2 text-danger'>All products</h5>
-          <div
-            className="d-flex gap-3 position-relative"
-            role="button"
-            onClick={() => (!authShow ? setAuthShow(true) : setAuthShow(false))}
-          >
-            <img src={guest} alt="guest-logo" />
-            <h5 className="d-none d-md-block mt-3 text-secondary">Hi,{token ?  <> {user} </>:<>Guests</>} </h5>
-            {!authShow ? (
-              <div className="d-none d-md-block mt-3 text-secondary">
-                <IoChevronDown />
-              </div>
-            ) : (
-              <div className="d-none d-md-block mt-3 text-secondary">
-                
-                <IoChevronUpOutline />
-              </div>
-            )}
+ <section className='d-flex justify-content-between align-items-center gap-3'>
+      <img src={foodpan} alt="" className='img-fluid'/>
+     <Link to='/Order'className='text-decoration-none'> <h5 className='d-none d-lg-block mt-2 text-danger'>All products</h5></Link>
+     <div>
+        <div onClick={()=>(!see ? setSee(true) :setSee(false))} className='d-flex '>
+        <img src={guest} alt="" />
+          <p role='button' className='mt-3 d-none d-lg-block text-secondary fs-5'> Hi,{token ? <>{user}</> :<>Guests</>}  </p>
+          <img src={<LoginHover/>} alt=""  />            </div>
+          
+      </div>
 
-            <div className="position-absolute top-100 end-0 mt-3  ">
-              {authShow && <LoginHover />}
-            </div>
-          </div>
-          <div className='poss'>
-          <div className='d-flex align-items-center'>
-            <div className='pic position-relative'>
-           <img src={lock}alt="" role='button' className='' />
-            </div>
-            <div className='bg-danger text-light position-absolute start-100 translate-middle rounded-pill h-75 p-1   '>
-            <p>{cart.length}</p>
-            </div>
-            <Cart/>
-          </div>
-          </div>
-     </section>
-        </nav>
-        
-        <Outlet/>
-    </main>
+      <div>
+        <div onClick={()=>(!show ? setShow(true) :setShow(false))} className='cart-container'>
+        <p className='pod'>{cart.length}</p>
+        <img src={lock}alt="" role='button' className='pod2'  />
+        </div>
+      </div>
+    
+ </section>
+    </nav>
+    <div className='position-absolute end-0'>{show && <Cart/>}</div>
+    <div className='position-absolute end-0'>{see && <LoginHover/>}</div>
+    <Outlet/>
+</main>
   )
 }
 
