@@ -29,6 +29,9 @@ body{
 
 
 @media (max-width: 370px) {
+  .poss{
+    overflow: visible;
+  }
 
     .possi {
       width: 250vw;

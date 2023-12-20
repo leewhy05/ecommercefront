@@ -10,13 +10,38 @@ const Update = () => {
   
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [recipient, setRecipient] = useState({
-    lastname:"",
-    firstname:'',
-    email:"",
-    phonenumber:""
-  })
-
+  
+  const handleUpdate = async(e)=>{
+    e.preventDefault()
+    localStorage.setItem("recipient", recipient);
+     const [recipient, setRecipient] = useState({
+      lastname:"",
+      firstname:'',
+      email:"",
+      phonenumber:""
+    })
+    try {
+      const data = await fetch('https://ecommerce-3r9v.onrender.com/api/order',{
+      method:"POST",
+      headers:{
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(signUpData),
+    });
+    const res = await data.json();
+    console.log(res);
+    if(res.success === false){
+      toast.error(res.message)
+    }
+    if(res.success === true){
+      toast.success(res.message)
+      navigate('/ChecOutPage')
+    }
+    } catch (error) {
+      
+    }
+  
+  }
   return (
     <>
      <Button variant="" onClick={handleShow}>
@@ -89,7 +114,7 @@ const Update = () => {
       </div>
     </div></Modal.Body>
     <Modal.Footer>
-    <button className="btn sub text-white">Submit</button>
+    <button className="btn sub text-white" onClick={handleUpdate}>Submit</button>
     </Modal.Footer>
   </Modal>
     </>

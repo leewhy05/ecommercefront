@@ -61,7 +61,7 @@ const Navbar = () => {
             onClick={() => (!authShow ? setAuthShow(true) : setAuthShow(false))}
           >
             <img src={guest} alt="guest-logo" />
-            <h5 className="d-none d-md-block mt-3 text-secondary">Hi, {token ?  <> {user} </> : <> Guests </>} </h5>
+            <h5 className="d-none d-md-block mt-3 text-secondary">Hi,{token ?  <> {user} </>:<>Guests</>} </h5>
             {!authShow ? (
               <div className="d-none d-md-block mt-3 text-secondary">
                 <IoChevronDown />

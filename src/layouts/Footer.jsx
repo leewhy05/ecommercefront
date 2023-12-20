@@ -13,7 +13,7 @@ import { AiOutlineYoutube } from "react-icons/ai";
 const Footer = () => {
   return (
     <div>
-         <div className="main-cont">
+         <div className="main-cont  container">
       <footer>
         <div className="head col-md-12">
           <div className="first-container">

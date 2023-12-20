@@ -7,9 +7,9 @@ const Bag = () => {
     const { cart, removeItem, totalPrice} = useContext(CartContext)
   return (
     <>
-     <main className="container p-2 shadow-lg bg-light">
+    <main className="container p-2 shadow-lg bg-light text-danger">
         <div>
-          <div className="container w-100">
+          <div className="container">
             {/* <p className="fw-bold fs-4">Your Order</p> */}
 
             {cart.map((cartItem) => {
@@ -21,18 +21,20 @@ const Bag = () => {
                 >
                   <hr />
 
-                  <p className="col-1"> {quantity} </p>
+                  <p className="col-1 text-secondary"> {quantity} </p>
                   <h2 className="fs-6 col-5 text-danger"> {title}... </h2>
                   <p className="col-4">
                     
                     
-                   <div className="d-flex gap-3">
+                   <div className="d-flex gap-3 text-dark">
                    <span role="button" onClick={() => removeItem(_id)}>
                      <img src={BinPic} alt="" />
-                    </span>&#8358;
+                    </span>
                     {price}
                    </div>
                   </p>
+                  {/* <div className=''>
+                        </div> */}
                 </div>
               );
             })}
@@ -42,9 +44,9 @@ const Bag = () => {
             {totalPrice === 0 ? (
               ""
             ) : (
-              <div className="d-flex justify-content-between">
+              <div className="d-flex justify-content-between text-dark">
                 <p> Items Subtotal </p>
-                  <p>&#8358;{totalPrice} </p>
+                  <p># {totalPrice} </p>
                 {/* <div>
                 </div> */}
               </div>
@@ -54,7 +56,7 @@ const Bag = () => {
           <div className="d-flex justify-content-center">
           <hr />
             {cart.length > 0 ? (
-              <Link className="btn btn-success w-100" to="/CheckOutPage">
+              <Link className="btn btn-success w-100" to='/CheckOutPage'>
                 proceed to Checkout
               </Link>
             ) : (
@@ -65,13 +67,13 @@ const Bag = () => {
                   <Link className="btn btn-success btn-lg">
                     Continue shopping
                   </Link>
+                  {/* <button className="btn btn-success btn-lg">Continue shopping</button> */}
                 </div>
               </>
             )}
           </div>
         </div>
       </main>
-
     
     
     </>
