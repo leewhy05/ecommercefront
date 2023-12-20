@@ -60,7 +60,7 @@ const Navbar = () => {
         <div onClick={()=>(!see ? setSee(true) :setSee(false))} className='d-flex '>
         <img src={guest} alt="" />
           <p role='button' className='mt-3 d-none d-lg-block text-secondary fs-5'> Hi,{token ? <>{user}</> :<>Guests</>}  </p>
-          <img src={<LoginHover/>} alt=""  />            </div>
+          <img src={<LoginHover/>} alt=""  /></div>
           
       </div>
 
