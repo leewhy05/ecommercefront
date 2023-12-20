@@ -9,7 +9,6 @@ import Cart from '../pages/Cart'
 import '../styles/navbar.css'
 import {IoChevronUpOutline, IoChevronDown} from "react-icons/io5"
 import CartContext from '../contexts/JazzyContent'
-import guestVector from '../assets/down.jpg'
 import LoginHover from '../pages/LoginHover'
 
 const Navbar = () => {
@@ -53,16 +52,31 @@ const Navbar = () => {
            <h5 className='d-none d-lg-block text-danger'>Lagos, Nigeria</h5>
  </section>
 
- <section className='d-flex justify-content-between align-items-center gap-3'>
+ <section className='d-flex justify-content-between align-items-center gap-2'>
       <img src={foodpan} alt="" className='img-fluid'/>
-     <Link to='/Order'className='text-decoration-none'> <h5 className='d-none d-lg-block mt-2 text-danger'>All products</h5></Link>
-     <div>
-        <div onClick={()=>(!see ? setSee(true) :setSee(false))} className='d-flex '>
-        <img src={guest} alt="" />
-          <p role='button' className='mt-3 d-none d-lg-block text-secondary fs-5'> Hi,{token ? <>{user}</> :<>Guests</>}  </p>
-          <img src={<LoginHover/>} alt=""  /></div>
-          
-      </div>
+     <Link to='/CheckOutPage'className='text-decoration-none'> <h5 className='d-none d-lg-block mt-2 text-danger'>All products</h5></Link>
+     <div
+            className="d-flex gap-3 position-relative"
+            role="button"
+            onClick={() => (!authShow ? setAuthShow(true) : setAuthShow(false))}
+          >
+            <img src={guest} alt="guest-logo" />
+            <h5 className="d-none d-md-block mt-3 text-secondary">Hi,  {token ?  <> {user} </> : <> Guests </>} </h5>
+            {!authShow ? (
+              <div className="d-none d-md-block mt-3 text-secondary">
+                <IoChevronDown />
+              </div>
+            ) : (
+              <div className="d-none d-md-block mt-3 text-secondary">
+                
+                <IoChevronUpOutline />
+              </div>
+            )}
+
+            <div className="position-absolute top-100 end-0 mt-3  ">
+              {authShow && <LoginHover />}
+            </div>
+          </div>
 
       <div>
         <div onClick={()=>(!show ? setShow(true) :setShow(false))} className='cart-container'>

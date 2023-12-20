@@ -3,24 +3,28 @@ import '../styles/update.css'
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Update = () => {
   const [show, setShow] = useState(false);
   
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const navigate = useNavigate()
+
+
+  const [recipient, setRecipient] = useState({
+    lastname:"",
+    firstname:'',
+    email:"",
+    phonenumber:""
+  })
   
   const handleUpdate = async(e)=>{
     e.preventDefault()
     localStorage.setItem("recipient", recipient);
-     const [recipient, setRecipient] = useState({
-      lastname:"",
-      firstname:'',
-      email:"",
-      phonenumber:""
-    })
-    try {
+     try {
       const data = await fetch('https://ecommerce-3r9v.onrender.com/api/order',{
       method:"POST",
       headers:{
@@ -30,17 +34,18 @@ const Update = () => {
     });
     const res = await data.json();
     console.log(res);
+    
+    if(res.success === true){
+      toast.success(res.message)
+      navigate('/CheckOutPage')
+    }
     if(res.success === false){
       toast.error(res.message)
     }
-    if(res.success === true){
-      toast.success(res.message)
-      navigate('/ChecOutPage')
-    }
-    } catch (error) {
-      
-    }
-  
+     } catch (error) {
+      toast.error
+     }
+   
   }
   return (
     <>
@@ -69,6 +74,8 @@ const Update = () => {
               id="firstName"
               name="firstName"
               placeholder="First Name"
+              value={recipient.firstname}
+              onChange={(e)=> setRecipient({...recipient,firstname:e.target.value}) }
             />
           </div>
           <div className="mb-3">
@@ -81,6 +88,8 @@ const Update = () => {
               id="lastName"
               name="lastName"
               placeholder="Last Name"
+              value={recipient.lastname}
+              onChange={(e)=> setRecipient({...recipient,lastname:e.target.value}) }
             />
           </div>
           <div className="mb-3">
@@ -93,6 +102,8 @@ const Update = () => {
               id="email"
               name="email"
               placeholder="example@mail.com"
+              value={recipient.email}
+              onChange={(e)=> setRecipient({...recipient,email:e.target.value}) }
             />
           </div>
           <div className="mb-3">
@@ -107,6 +118,8 @@ const Update = () => {
                 id="PhoneNumber"
                 name="phoneNumber"
                 placeholder="818 000 0000"
+                value={recipient.phonenumber}
+              onChange={(e)=> setRecipient({...recipient,phonenumber:e.target.value}) }
               />
             </div>
           </div>
