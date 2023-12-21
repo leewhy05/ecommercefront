@@ -13,6 +13,7 @@ import SinglePage from './pages/SinglePage'
 import { Toaster } from 'react-hot-toast';
 import ForgotPassword from './pages/ForgotPassword'
 import ResetPass from './pages/ResetPass'
+import Order from './pages/Order'
 
 
 function App() {
@@ -25,9 +26,10 @@ function App() {
         <Route element={<><Navbar/><Footer/></>}>
           <Route path='/' element={<Home/>}/>
           <Route path='/CheckOutPage' element={<CheckOutPage/>}/>
-          <Route path='/Update' element={<Update/>}/>
+          <Route path='/Order' element={<Order/>}/>
+          {/* <Route path='/Update' element={<Update/>}/>
           <Route path='/Delivery' element={<Delivery/>}/>
-          <Route path='/SinglePage' element={<SinglePage/>}/>
+          <Route path='/SinglePage' element={<SinglePage/>}/> */}
         </Route>
         <Route path='/SignIn' element={<SignIn/>}/>
         <Route path='/SignUp' element={<SignUp/>}/>
