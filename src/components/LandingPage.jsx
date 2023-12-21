@@ -75,10 +75,11 @@ const LandingPage = () => {
              <p className='addfont'>
               <button className='btn btn- d-flex align-items-center'>
                 <button className='btn text-danger' onClick={()=>{handleDecrease(datum)}}><LuMinus /></button>
-                {quantity}
+               
               <button className='btn text-danger'  onClick={()=>{handleIncrease(datum)}}><GoPlus /></button>
               </button>
               </p>
+              
              </div>
 
              <div className='d-flex justify-content-between w-75 ps-4 '>
