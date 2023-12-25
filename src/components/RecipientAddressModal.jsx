@@ -61,22 +61,53 @@ function ReciepientAddressModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title
-          id="contained-modal-title-vcenter"
-          className="text-center w-100"
         >
+          <h1 className="osho">
           Add Address
+          </h1>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         
       <form>
-        <input type="text" name="city" placeholder="city" value={address.city} onChange={handleChange} />
-        <input type="text" name="housenumber" placeholder="house number" value={address.housenumber} onChange={handleChange} />
-        <input type="text" name="street" placeholder="street" value={address.street} onChange={handleChange} />
-       <br /><br />
-        <button onClick={handleSubmit} className="btn btn-primary">
-          submit
-        </button>
+         <div className="ink">
+        
+        <div className="mb-3">
+          <label className="sand d-block" htmlFor="">
+           Select City
+          </label>
+          <input
+            className="form-control "
+            type="text"
+            name="city"
+            placeholder="city"
+            value={address.city} 
+            onChange={handleChange}
+          />
+        </div>
+        <div className="mb-3">
+          <label className="sand d-block" htmlFor="">
+            House Number
+          </label>
+          <input
+          className="form-control "
+           type="text" name="housenumber" placeholder="house number" value={address.housenumber} onChange={handleChange} />
+        </div>
+        <div className="mb-3">
+          <label className="sand d-block" htmlFor="">
+            Street
+          </label>
+          <input
+            className="form-control "
+            type="text"
+            name="street"
+            placeholder="street"
+            value={address.street} onChange={handleChange}
+          />
+        </div>
+
+  </div>
+  <button onClick={handleSubmit}  className="btn btn-primary sub text-white">Use This Address</button>
       </form>
       </Modal.Body>
       <Modal.Footer>

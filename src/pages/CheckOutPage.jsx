@@ -16,13 +16,6 @@ const CheckOutPage = () => {
   const { cart, removeItem, totalPrice, handleIncrease, handleDecrease } =
     useContext(CartContext);
 
-  // console.log(cart);
-  // function doSth(){
-  //   if(shown === true){
-  //     setShown(false)
-
-  //   }
-  // }
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -80,7 +73,6 @@ const CheckOutPage = () => {
                 className="row justify-content-between align-items-center "
                 key={_id}
               >
-                {/* <hr /> */}
 
                 <div className="col-5 ">
                   <h2 className="fs-6 text-danger"> {title}... </h2>
@@ -109,8 +101,7 @@ const CheckOutPage = () => {
                     {price}
                   </div>
                 </p>
-                {/* <div className=''>
-                        </div> */}
+               
               </div>
             );
           })}
@@ -121,8 +112,7 @@ const CheckOutPage = () => {
               <div className="d-flex justify-content-between">
                 <p> Items Subtotal </p>
                 <p># {totalPrice} </p>
-                {/* <div>
-                </div> */}
+               
               </div>
             )}
             <hr />
